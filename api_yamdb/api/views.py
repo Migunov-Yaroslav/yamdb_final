@@ -12,9 +12,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.tokens import RefreshToken
-
-from users.models import User
 from reviews.models import Category, Genre, Review, Title
+from users.models import User
+
 from .permissions import (IsAdminModeratorAuthorPermission, IsAdminOnly,
                           IsAdminUserOrReadOnly)
 from .serializers import (CategorySerializer, CommentSerializer,
