@@ -1,4 +1,3 @@
-# Комментарий для пуша
 name: yamdb_final workflow
 
 on: [push]
