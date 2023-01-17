@@ -1,7 +1,7 @@
 import csv
 
 from django.core.management.base import BaseCommand
-from reviews.models import Category, Comment, Genre, Review, Title
+from reviews.models import Category, Comment, Genre, GenreTitle, Review, Title
 from users.models import User
 
 
@@ -9,7 +9,10 @@ class Command(BaseCommand):
     help = 'Импорт данных из csv файлов в базу данных'
 
     def handle(self, *args, **options):
-        with open('static/data/genre.csv', encoding='utf-8') as csv_file:
+        with open(
+                'api_yamdb/static/data/genre.csv',
+                encoding='utf-8',
+        ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
             for row in csv_reader:
                 data = {
@@ -18,7 +21,10 @@ class Command(BaseCommand):
                 genre = Genre(**data)
                 genre.save()
 
-        with open('static/data/category.csv', encoding='utf-8') as csv_file:
+        with open(
+                'api_yamdb/static/data/category.csv',
+                encoding='utf-8',
+        ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
             for row in csv_reader:
                 data = {
@@ -27,7 +33,10 @@ class Command(BaseCommand):
                 category = Category(**data)
                 category.save()
 
-        with open('static/data/users.csv', encoding='utf-8') as csv_file:
+        with open(
+                'api_yamdb/static/data/users.csv',
+                encoding='utf-8',
+        ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
             for row in csv_reader:
                 data = {
@@ -42,7 +51,10 @@ class Command(BaseCommand):
                 users = User(**data)
                 users.save()
 
-        with open('static/data/titles.csv', encoding='utf-8') as csv_file:
+        with open(
+                'api_yamdb/static/data/titles.csv',
+                encoding='utf-8',
+        ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
             for row in csv_reader:
                 data = {
@@ -54,7 +66,24 @@ class Command(BaseCommand):
                 title = Title(**data)
                 title.save()
 
-        with open('static/data/review.csv', encoding='utf-8') as csv_file:
+        with open(
+                'api_yamdb/static/data/genre_title.csv',
+                encoding='utf-8',
+        ) as csv_file:
+            csv_reader = csv.DictReader(csv_file, delimiter=',')
+            for row in csv_reader:
+                data = {
+                    'pk': row['id'],
+                    'title_id': row['title_id'],
+                    'genre_id': row['genre_id'],
+                }
+                genre_title = GenreTitle(**data)
+                genre_title.save()
+
+        with open(
+                'api_yamdb/static/data/review.csv',
+                encoding='utf-8',
+        ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
             for row in csv_reader:
                 data = {
@@ -68,7 +97,10 @@ class Command(BaseCommand):
                 reviews = Review(**data)
                 reviews.save()
 
-        with open('static/data/comments.csv', encoding='utf-8') as csv_file:
+        with open(
+                'api_yamdb/static/data/comments.csv',
+                encoding='utf-8',
+        ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
             for row in csv_reader:
                 data = {
