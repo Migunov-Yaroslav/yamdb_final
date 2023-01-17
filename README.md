@@ -137,6 +137,9 @@ sudo docker-compose exec web python manage.py collectstatic --no-input
 sudo docker-compose exec web python manage.py import_data_from_csv
 ```
 
+Проект доступен по адресу:
+[158.160.21.86/api/v1/](http://158.160.21.86/api/v1/)
+
 Разработчики:
 ```zsh
 1. Кирилл Марин (https://github.com/MilkaMjoy):
