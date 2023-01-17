@@ -10,7 +10,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         with open(
-                '/static/data/genre.csv',
+                'app/static/data/genre.csv',
                 encoding='utf-8',
         ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
@@ -22,7 +22,7 @@ class Command(BaseCommand):
                 genre.save()
 
         with open(
-                '/static/data/category.csv',
+                'app/static/data/category.csv',
                 encoding='utf-8',
         ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
@@ -34,7 +34,7 @@ class Command(BaseCommand):
                 category.save()
 
         with open(
-                '/static/data/users.csv',
+                'app/static/data/users.csv',
                 encoding='utf-8',
         ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
@@ -52,7 +52,7 @@ class Command(BaseCommand):
                 users.save()
 
         with open(
-                '/static/data/titles.csv',
+                'app/static/data/titles.csv',
                 encoding='utf-8',
         ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
@@ -67,7 +67,7 @@ class Command(BaseCommand):
                 title.save()
 
         with open(
-                '/static/data/genre_title.csv',
+                'app/static/data/genre_title.csv',
                 encoding='utf-8',
         ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
@@ -81,7 +81,7 @@ class Command(BaseCommand):
                 genre_title.save()
 
         with open(
-                '/static/data/review.csv',
+                'app/static/data/review.csv',
                 encoding='utf-8',
         ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
@@ -98,7 +98,7 @@ class Command(BaseCommand):
                 reviews.save()
 
         with open(
-                '/static/data/comments.csv',
+                'app/static/data/comments.csv',
                 encoding='utf-8',
         ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
