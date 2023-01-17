@@ -10,7 +10,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         with open(
-                'app/static/data/genre.csv',
+                '/static/data/genre.csv',
                 encoding='utf-8',
         ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
@@ -22,7 +22,7 @@ class Command(BaseCommand):
                 genre.save()
 
         with open(
-                'app/static/data/category.csv',
+                '/static/data/category.csv',
                 encoding='utf-8',
         ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
@@ -34,7 +34,22 @@ class Command(BaseCommand):
                 category.save()
 
         with open(
-                'app/static/data/users.csv',
+                '/static/data/titles.csv',
+                encoding='utf-8',
+        ) as csv_file:
+            csv_reader = csv.DictReader(csv_file, delimiter=',')
+            for row in csv_reader:
+                data = {
+                    'pk': row['id'],
+                    'name': row['name'],
+                    'year': row['year'],
+                    'category_id': row['category'],
+                }
+                title = Title(**data)
+                title.save()
+
+        with open(
+                '/static/data/users.csv',
                 encoding='utf-8',
         ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
@@ -52,36 +67,7 @@ class Command(BaseCommand):
                 users.save()
 
         with open(
-                'app/static/data/titles.csv',
-                encoding='utf-8',
-        ) as csv_file:
-            csv_reader = csv.DictReader(csv_file, delimiter=',')
-            for row in csv_reader:
-                data = {
-                    'pk': row['id'],
-                    'name': row['name'],
-                    'year': row['year'],
-                    'category_id': row['category'],
-                }
-                title = Title(**data)
-                title.save()
-
-        with open(
-                'app/static/data/genre_title.csv',
-                encoding='utf-8',
-        ) as csv_file:
-            csv_reader = csv.DictReader(csv_file, delimiter=',')
-            for row in csv_reader:
-                data = {
-                    'pk': row['id'],
-                    'title_id': row['title_id'],
-                    'genre_id': row['genre_id'],
-                }
-                genre_title = GenreTitle(**data)
-                genre_title.save()
-
-        with open(
-                'app/static/data/review.csv',
+                '/static/data/review.csv',
                 encoding='utf-8',
         ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
@@ -98,7 +84,7 @@ class Command(BaseCommand):
                 reviews.save()
 
         with open(
-                'app/static/data/comments.csv',
+                '/static/data/comments.csv',
                 encoding='utf-8',
         ) as csv_file:
             csv_reader = csv.DictReader(csv_file, delimiter=',')
@@ -112,3 +98,17 @@ class Command(BaseCommand):
                 }
                 comments = Comment(**data)
                 comments.save()
+
+        with open(
+                '/static/data/genre_title.csv',
+                encoding='utf-8',
+        ) as csv_file:
+            csv_reader = csv.DictReader(csv_file, delimiter=',')
+            for row in csv_reader:
+                data = {
+                    'pk': row['id'],
+                    'title_id': row['title_id'],
+                    'genre_id': row['genre_id'],
+                }
+                genre_title = GenreTitle(**data)
+                genre_title.save()
